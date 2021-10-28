@@ -24,11 +24,16 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     text-decoration: none;
     font-size: 1.6rem;
-    font-family: "Raleway", sans-serif;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-box-sizing: border-box;
+  }
+
+  h1, h2, h3, h4, h5, h6, strong {
+    font-weight: 600;
   }
 
   // font-size: 16px (Desktop);
