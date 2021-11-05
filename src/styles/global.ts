@@ -5,6 +5,7 @@ export const GlobalStyle = createGlobalStyle`
     --Background: #f0f2f5;
     --Red: #E52E4D;
     --Blue: #5429CC;  
+    --Green: #33CC95;  
 
     --Blue-light: #6933ff;
 
@@ -50,7 +51,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body{
-    background-color: var(--background);
+    background-color: var(--Background);
     -webkit-font-smoothing: antialiased;
     &::-webkit-scrollbar {
       width: 5px;
