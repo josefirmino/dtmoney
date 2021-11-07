@@ -4,8 +4,8 @@ export const GlobalStyle = createGlobalStyle`
   :root{
     --Background: #f0f2f5;
     --Red: #E52E4D;
-    --Blue: #5429CC;  
     --Green: #33CC95;  
+    --Blue: #5429CC;  
 
     --Blue-light: #6933ff;
 
@@ -79,5 +79,50 @@ export const GlobalStyle = createGlobalStyle`
   [disabled]{
     opacity: 0;
     cursor: not-allowed;
+  }
+
+
+  /* Modal */
+
+  .react-modal-overlay{
+    background: rgba(0, 0, 0, 0.5);
+
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .react-modal-content{
+    width: 100%;
+    max-width: 57.6rem;
+    background-color: var(--Background);
+    padding: 6.4rem 4.8rem;
+    border-radius: .5rem;
+    position: relative;
+  }
+
+  .react-modal-close{
+    display: flex;
+    position: absolute;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    right: 0.8rem;
+    top: 0.8rem;
+    transition: transform .25s, opacity .25s;
+	  opacity: .7;
+    &:hover{
+      opacity: 1;
+	    transform: rotate(90deg);
+    }
+    img {
+      padding: 1.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 `;

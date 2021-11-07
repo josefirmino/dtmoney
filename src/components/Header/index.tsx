@@ -1,7 +1,7 @@
 import logoImg from "../../assets/logo.svg";
 
 // Styled
-import { Section, Container, HeaderDiv } from "./styles";
+import * as S from "./styles";
 
 interface HeaderProps {
   onOpenNewTransitionModal: () => void;
@@ -9,15 +9,15 @@ interface HeaderProps {
 
 export function Header({ onOpenNewTransitionModal }: HeaderProps) {
   return (
-    <Section>
-      <Container>
-        <HeaderDiv>
+    <S.Section>
+      <S.Container>
+        <S.HeaderDiv>
           <img src={logoImg} alt="dt money" />
           <button type="button" onClick={onOpenNewTransitionModal}>
             Nova transação
           </button>
-        </HeaderDiv>
-      </Container>
-    </Section>
+        </S.HeaderDiv>
+      </S.Container>
+    </S.Section>
   );
 }
