@@ -1,6 +1,9 @@
 import { FormEvent, useState } from "react";
+import { useTransactions } from "../../hooks/useTransactions";
 import Modal from "react-modal";
-import { api } from "../../services/api";
+
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 import * as S from "./styles";
 
@@ -17,23 +20,39 @@ export function NewTransactionModal({
   isOpen,
   onRequestClose,
 }: NewTransactionModalProps) {
+  const { createTransaction } = useTransactions();
+
   const [title, setTitle] = useState("");
-  const [value, setValue] = useState(0);
+  const [amount, setAmount] = useState(0);
   const [category, setCategory] = useState("");
 
   const [type, setType] = useState("deposit");
 
-  function handleCrateNewTransaction(event: FormEvent) {
+  async function handleCrateNewTransaction(event: FormEvent) {
     event.preventDefault();
 
-    const data = {
+    await createTransaction({
       title,
-      value,
+      amount,
       category,
       type,
-    };
+    });
 
-    api.post("/transactions", data);
+    // Resetando o valor dos inputs
+    setTitle("");
+    setAmount(0);
+    setCategory("");
+    setType("deposit");
+
+    // Fechando o modal
+    onRequestClose();
+
+    const AlertForm = withReactContent(Swal);
+
+    await AlertForm.fire({
+      title: <h2>Transação cadastrada com sucesso</h2>,
+      icon: "success",
+    });
   }
 
   return (
@@ -59,13 +78,15 @@ export function NewTransactionModal({
           placeholder="Título"
           value={title}
           onChange={(event) => setTitle(event.target.value)}
+          required
         />
 
         <input
           type="number"
           placeholder="Valor"
-          value={value}
-          onChange={(event) => setValue(Number(event.target.value))}
+          value={amount}
+          onChange={(event) => setAmount(Number(event.target.value))}
+          required
         />
 
         <S.TransactionTypeContainer>
@@ -98,6 +119,7 @@ export function NewTransactionModal({
           placeholder="Categoria"
           value={category}
           onChange={(event) => setCategory(event.target.value)}
+          required
         />
 
         <button type="submit">Cadastrar</button>
